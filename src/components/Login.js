@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import styled from 'styled-components';
 
 import { signInAPI } from '../actions';
@@ -7,6 +8,7 @@ import { signInAPI } from '../actions';
 const Login = ( props ) => {
     return (
         <Container>
+            {props.user && <Redirect to='/home' />}
             <Nav>
                 <a href="/">
                     <img src="/images/login-logo.svg" alt="" />
@@ -24,7 +26,7 @@ const Login = ( props ) => {
                 <Form>
                     <Google onClick={props.signIn}>
                         <img src="/images/google.svg" alt="" />
-                        Sign In with Goolge
+                        Sign in with Goolge
                     </Google>
                 </Form>
             </Section>
@@ -170,7 +172,7 @@ const Google = styled.button`
 
 const mapStateToProps = ( state ) => {
     return {
-
+        user: state.userState.user
     };
 };
 
